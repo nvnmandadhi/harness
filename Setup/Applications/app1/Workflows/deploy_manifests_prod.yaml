@@ -1,7 +1,7 @@
 harnessApiVersion: '1.0'
 type: CANARY
 concurrencyStrategy: INFRA
-envName: pre-prod
+envName: prod
 failureStrategies:
 - executionScope: WORKFLOW
   failureTypes:
@@ -75,7 +75,6 @@ preDeploymentSteps:
     commandName: Artifact Check
 rollbackPhases:
 - type: KUBERNETES
-  computeProviderName: Kubernetes Cluster
   daemonSet: false
   infraDefinitionName: pre-prod-infra
   name: Rollback Canary
