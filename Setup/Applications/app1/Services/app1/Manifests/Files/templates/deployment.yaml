@@ -30,7 +30,7 @@ spec:
           ports:
             - name: http
               containerPort: 8080
-      serviceAccountName: pod-runner
+      serviceAccountName: {{.Values.serviceAccountName}}
 ---
 apiVersion: v1
 kind: ConfigMap
