@@ -6,7 +6,7 @@ metadata:
   annotations:
     openshift.io/host.generated: 'true'
 spec:
-  host: app1-svc-apps.apps.ocp.nmandadhi.com
+  host: app1-svc-{{.Values.namespace}}.apps.ocp.nmandadhi.com
   to:
     kind: Service
     name: app1-svc
