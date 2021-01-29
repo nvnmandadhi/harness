@@ -20,7 +20,7 @@ phases:
 - type: KUBERNETES
   computeProviderName: Kubernetes Cluster
   daemonSet: false
-  infraDefinitionName: infra
+  infraDefinitionName: pre-prod-infra
   name: Canary
   phaseSteps:
   - type: K8S_PHASE_STEP
@@ -77,7 +77,7 @@ rollbackPhases:
 - type: KUBERNETES
   computeProviderName: Kubernetes Cluster
   daemonSet: false
-  infraDefinitionName: infra
+  infraDefinitionName: pre-prod-infra
   name: Rollback Canary
   phaseNameForRollback: Canary
   phaseSteps:
