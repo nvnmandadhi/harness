@@ -2,7 +2,7 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: app1-svc
-  namespace: apps
+  namespace: {{.Values.namespace}}
   annotations:
     openshift.io/host.generated: 'true'
 spec:
