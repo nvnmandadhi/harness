@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      {{- if .Values.dockercfg}}
+      imagePullSecrets:
+        - name: {{.Values.name}}-dockercfg
+      {{- end}}
+      containers:
+        - image: gcr.io/solstice-api-junkyard/app1
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /
+            timeoutSeconds: 2
+          name: hello
+          envFrom:
+            - configMapRef:
+                name: env-config
+          ports:
+            - name: http
+              containerPort: 8080
+      serviceAccountName: pod-runner
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-config
+  namespace: apps
+data:
+  env: prod
+---
+{{- if .Values.dockercfg}}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{.Values.name}}-dockercfg
+  namespace: apps
+  annotations:
+    harness.io/skip-versioning: "true"
+data:
+  .dockercfg: {{.Values.dockercfg}}
+type: kubernetes.io/dockercfg
+---
+{{- end}}
