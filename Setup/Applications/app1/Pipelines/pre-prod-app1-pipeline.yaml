@@ -22,10 +22,3 @@ pipelineStages:
   skipCondition:
     type: DO_NOT_SKIP
   stageName: STAGE 2
-- type: ENV_STATE
-  name: deploy_manifests_prod
-  parallel: false
-  skipCondition:
-    type: DO_NOT_SKIP
-  stageName: STAGE 3
-  workflowName: deploy_manifests_prod
