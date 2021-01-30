@@ -42,6 +42,25 @@ phases:
       properties:
         skipDryRun: true
         stateTimeoutInMinutes: 2
+    - type: HTTP
+      name: HTTP
+      properties:
+        assertion: ${httpResponseCode}==200
+        body: ''
+        executeWithPreviousSteps: false
+        headers:
+        - key: Accept
+          value: application/json
+        method: GET
+        publishAsVar: false
+        responseProcessingExpressions: ''
+        sweepingOutputName: null
+        sweepingOutputScope: null
+        tags: null
+        templateVariables: ''
+        timeoutMillis: 10000
+        url: ${httpUrl}
+        useProxy: false
     stepsInParallel: false
   - type: K8S_PHASE_STEP
     name: Wrap Up
